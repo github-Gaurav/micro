@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.LookupService;
+import studentservice.StudentService.StudentServiceApplication;
 
 @RestController
 public class StudentController {
@@ -20,11 +23,16 @@ public class StudentController {
 	private static DiscoveryClient discoveryClient;
 	
 	@Autowired
+	EurekaClient eureka;
+	
+	@Autowired
 	RestTemplate rest;
 
-	public static String serviceUrl() {
+	public  String serviceUrl() {
 		 System.out.println("Inside Service URL ");
-	    List<ServiceInstance> list = discoveryClient.getInstances("SCHOOL-SERVICE");
+		/*List<LookupService<StudentServiceApplication>> str =  eureka.getInstancesById("SCHOOL-SERVICE");
+		str.stream().forEach(u->System.out.println(u.getApplication(arg0)));*/
+	    List<ServiceInstance> list = this.discoveryClient.getInstances("SCHOOL-SERVICE");
 	    System.out.println("The list is "+ list.get(0));
 	    if (list != null && list.size() > 0 ) {
 	        return list.get(0).getUri().toString();
