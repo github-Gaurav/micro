@@ -1,5 +1,5 @@
 server: 
-  port: 8098
+  port: 8099
   
     
 eureka: 
@@ -11,4 +11,4 @@ eureka:
       
 spring:
   application:
-    name: School-service    
+    name: School-Service    

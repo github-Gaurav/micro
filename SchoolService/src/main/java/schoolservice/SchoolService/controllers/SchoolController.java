@@ -45,6 +45,16 @@ public class SchoolController {
 		
 	}
 	
+	@RequestMapping("/get")
+	public List<Student> getStudent(){
+		System.out.println("inside get student");
+		List<Student> ls = map.get(0);
+		
+		return ls;
+		
+		
+	}
+	
 	
 
 }
